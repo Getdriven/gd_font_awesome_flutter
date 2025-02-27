@@ -2,6 +2,7 @@ library font_awesome_flutter;
 
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/src/icon_data.dart';
+
 export 'package:font_awesome_flutter/src/fa_icon.dart';
 export 'package:font_awesome_flutter/src/icon_data.dart';
 
@@ -10,6 +11,8 @@ export 'package:font_awesome_flutter/src/icon_data.dart';
 /// Icons based on font awesome 6.7.2
 @staticIconProvider
 class FontAwesomeIcons {
+  static const IconData getDrivenLogo = IconDataGetDriven(0xe801);
+
   /// Solid Fill Drip icon
   ///
   /// https://fontawesome.com/icons/fill-drip?style=solid

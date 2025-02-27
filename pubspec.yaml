@@ -44,6 +44,10 @@ flutter:
       fonts:
         - asset: lib/fonts/fa-thin-100.ttf
           weight: 100
+    - family: GdLogoFont
+      fonts:
+        - asset: lib/fonts/GdLogoFont.ttf
+          weight: 100
 #    - family: FontAwesomeSharpThin
 #      fonts:
 #        - asset: lib/fonts/fa-sharp-thin-100.ttf

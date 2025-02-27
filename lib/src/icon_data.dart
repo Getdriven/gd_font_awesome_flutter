@@ -2,6 +2,14 @@ library;
 
 import 'package:flutter/widgets.dart';
 
+class IconDataGetDriven extends IconData {
+  const IconDataGetDriven(super.codePoint)
+      : super(
+          fontFamily: 'GdLogoFont',
+          fontPackage: 'font_awesome_flutter',
+        );
+}
+
 /// [IconData] for a font awesome brand icon from a code point
 ///
 /// Code points can be obtained from fontawesome.com
