@@ -5,9 +5,9 @@ import 'dart:io';
 
 import 'package:ansicolor/ansicolor.dart';
 import 'package:args/args.dart';
+import 'package:pub_semver/pub_semver.dart' as pub;
 import 'package:recase/recase.dart';
 import 'package:version/version.dart';
-import 'package:pub_semver/pub_semver.dart' as pub;
 
 /// A map which adjusts icon ids starting with a number
 ///
@@ -150,17 +150,6 @@ void main(List<String> rawArgs) async {
     'example/lib/icons.dart',
   );
 
-  if (args['dynamic']) {
-    writeCodeToFile(
-      () => generateIconNameMap(metadata),
-      'lib/name_icon_mapping.dart',
-    );
-  } else {
-    // Remove file if dynamic is not requested. Helps things to stay consistent
-    final iconNameMappingFile = File('lib/name_icon_mapping.dart');
-    if (iconNameMappingFile.existsSync()) iconNameMappingFile.deleteSync();
-  }
-
   adjustPubspecFontIncludes(styles);
 
   if (!hasCustomIconsJson) {
@@ -194,7 +183,8 @@ void adjustPubspecFontIncludes(Set<String> styles) {
     if (!line.trimLeft().startsWith('- family:')) continue;
 
     styleName = line.substring(25).toLowerCase(); // - family: FontAwesomeXXXXXX
-    if (styles.any((element) => element.replaceAll(' ', '') == styleName)) { //Because of 'sharp thin' we need to remove spaces here
+    if (styles.any((element) => element.replaceAll(' ', '') == styleName)) {
+      //Because of 'sharp thin' we need to remove spaces here
       pubspec[i] = uncommentYamlLine(pubspec[i]);
       pubspec[i + 1] = uncommentYamlLine(pubspec[i + 1]);
       pubspec[i + 2] = uncommentYamlLine(pubspec[i + 2]);
@@ -562,7 +552,9 @@ bool readAndPickMetadata(File iconsJson, List<IconMetadata> metadata,
     } else if (icon.containsKey("svgs")) {
       iconStyles.addAll((icon['svgs']['classic'] as Map<String, dynamic>).keys);
       if (icon['svgs']?['sharp'] != null) {
-        iconStyles.addAll((icon['svgs']['sharp'] as Map<String, dynamic>).keys.map((key) => 'sharp $key')); //"sharp thin ..."
+        iconStyles.addAll((icon['svgs']['sharp'] as Map<String, dynamic>)
+            .keys
+            .map((key) => 'sharp $key')); //"sharp thin ..."
       }
     }
     //TODO: Remove line once duotone support discontinuation notice is removed
@@ -640,7 +632,15 @@ ArgParser setUpArgParser() {
   argParser.addMultiOption('exclude',
       abbr: 'e',
       defaultsTo: [],
-      allowed: ['brands', 'regular', 'solid', 'duotone', 'light', 'thin', 'sharp'],
+      allowed: [
+        'brands',
+        'regular',
+        'solid',
+        'duotone',
+        'light',
+        'thin',
+        'sharp'
+      ],
       help: 'icon styles which are excluded by the generator');
 
   argParser.addFlag('dynamic',
