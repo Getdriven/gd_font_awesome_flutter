@@ -28534,4 +28534,13 @@ class FontAwesomeIcons {
       fontPackage: 'font_awesome_flutter',
     ),
   );
+
+  // Custom GetDriven logo icon
+  static const FaIconData getDrivenLogo = FaIconData(
+    IconData(
+      0xe801,
+      fontFamily: 'GdLogoFont',
+      fontPackage: 'font_awesome_flutter',
+    ),
+  );
 }

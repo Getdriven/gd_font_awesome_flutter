@@ -37,6 +37,10 @@ flutter:
       fonts:
         - asset: lib/fonts/Font-Awesome-7-Free-Solid-900.otf
           weight: 900
+    - family: GdLogoFont
+      fonts:
+        - asset: lib/fonts/GdLogoFont.ttf
+          weight: 100
 #    - family: FontAwesomeLight
 #      fonts:
 #        - asset: lib/fonts/Font-Awesome-7-Pro-Light-300.otf
