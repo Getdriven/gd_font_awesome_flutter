@@ -148,7 +148,13 @@ class FaIcon extends Icon {
 
     return Semantics(
       label: semanticLabel,
-      child: ExcludeSemantics(child: iconWidget),
+      child: ExcludeSemantics(
+        child: SizedBox(
+          width: iconSize,
+          height: iconSize,
+          child: Center(child: iconWidget),
+        ),
+      ),
     );
   }
 }
